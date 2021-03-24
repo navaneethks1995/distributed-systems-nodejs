@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 4000;
 console.log(`worker pid=${process.pid}`);
 
 server.get('/:limit', async (req,reply) => {
+    await sleep(10);
     return String(fibonacci(Number(req.params.limit)));
 })
 
@@ -23,4 +24,8 @@ function fibonacci(limit) {
         limit--;
     }
     return next
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve,ms));
 }

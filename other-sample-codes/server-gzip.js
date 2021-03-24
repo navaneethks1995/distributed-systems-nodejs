@@ -9,15 +9,15 @@ http.createServer((req,res) => {
     const raw = fs.createReadStream(path.join(__dirname,'index.html'));
     const acceptEncoding = req.headers['accept-encoding'] || '';
     res.setHeader('Content-Type', 'text/plain');
-    console.log(acceptEncoding);
+    // console.log(acceptEncoding);
 
     if(acceptEncoding.includes('gzip')) {
-        console.log('encoding with gzip');
+        // console.log('encoding with gzip');
         res.setHeader('Content-Encoding','gzip');
         raw.pipe(zlib.createGzip()).pipe(res);
     }
     else {
-        console.log('no encoding');
+        // console.log('no encoding');
         raw.pipe(res);
     }
 }).listen(process.env.PORT || 1337);
